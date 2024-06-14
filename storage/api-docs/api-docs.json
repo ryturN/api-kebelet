@@ -1,0 +1,1751 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Kebelet Open API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "User Login",
+                "description": "Login User here",
+                "operationId": "authLogin",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/google_signin": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "User Google Sign In",
+                "description": "User Google Sign In here",
+                "operationId": "googleSignIn",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "role",
+                                    "google_id"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "text"
+                                    },
+                                    "role": {
+                                        "type": "text"
+                                    },
+                                    "google_id": {
+                                        "type": "text"
+                                    },
+                                    "profile_picture": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Berhasil Login",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Tidak Ditemukan"
+                    }
+                }
+            }
+        },
+        "/api/v1/facebook_signin": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "User Facebook Sign In",
+                "description": "User Facebook Sign In here",
+                "operationId": "facebookSignIn",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "role",
+                                    "facebook_id"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "text"
+                                    },
+                                    "role": {
+                                        "type": "text"
+                                    },
+                                    "facebook_id": {
+                                        "type": "text"
+                                    },
+                                    "profile_picture": {
+                                        "type": "text"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Berhasil Login",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Tidak Ditemukan"
+                    }
+                }
+            }
+        },
+        "/api/v1/logout": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "User Logout",
+                "description": "Logout User here",
+                "operationId": "authLogout",
+                "responses": {
+                    "200": {
+                        "description": "Logout Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/register": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "User Register",
+                "description": "User Register here",
+                "operationId": "Register",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "username",
+                                    "email",
+                                    "password",
+                                    "password_confirmation",
+                                    "role"
+                                ],
+                                "properties": {
+                                    "username": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string"
+                                    },
+                                    "role": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Register Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/api/v1/checkins": {
+            "get": {
+                "tags": [
+                    "Checkin"
+                ],
+                "summary": "Checkin List",
+                "description": "Checkin List here",
+                "operationId": "checkinList",
+                "parameters": [
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "description": "Paginate size",
+                        "required": false
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Paginate page",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Checkins retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Checkin"
+                ],
+                "summary": "Checkin Create",
+                "description": "Checkin Create here",
+                "operationId": "checkinCreate",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "toilet_id"
+                                ],
+                                "properties": {
+                                    "toilet_id": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Checkin successfully created",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/api/v1/checkins/{id}": {
+            "get": {
+                "tags": [
+                    "Checkin"
+                ],
+                "summary": "Checkin Retrieve",
+                "description": "Checkin Retrieve here",
+                "operationId": "checkinRetrieve",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Checkin id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Checkin retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Checkin not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Checkin"
+                ],
+                "summary": "Checkin Delete",
+                "description": "PrCheckinoduct Delete here",
+                "operationId": "checkinDelete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Checkin id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Checkin deleted successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Failed to delete the Checkin."
+                    },
+                    "404": {
+                        "description": "Checkin not found."
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/locations": {
+            "get": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Location List",
+                "description": "Location List here",
+                "operationId": "locationList",
+                "parameters": [
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "description": "Paginate size",
+                        "required": false
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Paginate page",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Locations retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Location Create",
+                "description": "Location Create here",
+                "operationId": "locationCreate",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Location successfully created",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/locations/{id}": {
+            "get": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Location Retrieve",
+                "description": "Location Retrieve here",
+                "operationId": "locationRetrieve",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Location id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Location retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Location not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Location Update",
+                "description": "Location Update here",
+                "operationId": "LocationUpdate",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Location id",
+                        "required": true
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Location name",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Location updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation Error."
+                    },
+                    "409": {
+                        "description": "Failed to update the Location."
+                    },
+                    "404": {
+                        "description": "Location not found."
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Location Delete",
+                "description": "PrLocationoduct Delete here",
+                "operationId": "locationDelete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Location id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Location deleted successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Failed to delete the Location."
+                    },
+                    "404": {
+                        "description": "Location not found."
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/point": {
+            "get": {
+                "tags": [
+                    "Point"
+                ],
+                "summary": "Leaderboard",
+                "description": "Leaderboard here",
+                "operationId": "Leaderboard",
+                "parameters": [
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "description": "size",
+                        "required": false
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "page",
+                        "required": false
+                    },
+                    {
+                        "name": "sort_by",
+                        "in": "query",
+                        "description": "filter sort by",
+                        "required": false
+                    },
+                    {
+                        "name": "sort_order",
+                        "in": "query",
+                        "description": "filter sort order",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfuly retrieved leaderboard",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Point"
+                ],
+                "summary": "Claim Point",
+                "description": "Claim Point here",
+                "operationId": "Claim Point",
+                "responses": {
+                    "200": {
+                        "description": "Successfuly claim token",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/point/{id}": {
+            "delete": {
+                "tags": [
+                    "Point"
+                ],
+                "summary": "Delete Point",
+                "description": "Delete Point here",
+                "operationId": "Delete Point",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user_id",
+                        "required": true
+                    },
+                    {
+                        "name": "points",
+                        "in": "query",
+                        "description": "Number of points to delete",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully deleted points",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/point-histories": {
+            "get": {
+                "tags": [
+                    "Point"
+                ],
+                "summary": "Histories point",
+                "description": "Histories point here",
+                "operationId": "Histories point",
+                "parameters": [
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "description": "size",
+                        "required": false
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "page",
+                        "required": false
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "filter user_id",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfuly retrieved leaderboard",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/profile": {
+            "get": {
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Profile",
+                "description": "Profile User",
+                "operationId": "show-profile",
+                "responses": {
+                    "200": {
+                        "description": "Toilet retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/profile/{id}": {
+            "post": {
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Edit Profile",
+                "description": "Edit Profile here",
+                "operationId": "edit profile",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "username": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "old_password": {
+                                        "type": "string"
+                                    },
+                                    "profile_picture": {
+                                        "type": "file",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Review successfully created",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/reviews": {
+            "get": {
+                "tags": [
+                    "Review"
+                ],
+                "summary": "Review List",
+                "description": "Review List here",
+                "operationId": "reviewList",
+                "parameters": [
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "description": "Paginate size",
+                        "required": false
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Paginate page",
+                        "required": false
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "filter by user_id",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Reviews retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Review"
+                ],
+                "summary": "Review Create",
+                "description": "Review Create here",
+                "operationId": "reviewCreate",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "toilet_id",
+                                    "rating",
+                                    "description"
+                                ],
+                                "properties": {
+                                    "toilet_id": {
+                                        "type": "integer"
+                                    },
+                                    "rating": {
+                                        "type": "integer"
+                                    },
+                                    "total_toilet": {
+                                        "type": "string"
+                                    },
+                                    "cleanness": {
+                                        "type": "string"
+                                    },
+                                    "facility": {
+                                        "type": "string"
+                                    },
+                                    "crowded": {
+                                        "type": "string"
+                                    },
+                                    "img": {
+                                        "type": "file",
+                                        "format": "binary"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Review successfully created",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/reviews/upload": {
+            "post": {
+                "tags": [
+                    "Review"
+                ],
+                "summary": "Review Images",
+                "description": "Upload multiple review images",
+                "operationId": "Upload Review Image",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "reviews_id",
+                                    "img[]"
+                                ],
+                                "properties": {
+                                    "reviews_id": {
+                                        "type": "integer"
+                                    },
+                                    "img[]": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "file",
+                                            "format": "binary"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Files Successfully uploaded",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/reviews/{id}": {
+            "get": {
+                "tags": [
+                    "Review"
+                ],
+                "summary": "Review Retrieve",
+                "description": "Review Retrieve here",
+                "operationId": "reviewRetrieve",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Review id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Review retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Review not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Review"
+                ],
+                "summary": "Review Delete",
+                "description": "PrReviewoduct Delete here",
+                "operationId": "reviewDelete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Review id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Review deleted successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Failed to delete the Review."
+                    },
+                    "404": {
+                        "description": "Review not found."
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/toilets": {
+            "get": {
+                "tags": [
+                    "Toilet"
+                ],
+                "summary": "Toilet List",
+                "description": "Toilet List here",
+                "operationId": "toiletList",
+                "parameters": [
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "description": "Paginate size",
+                        "required": false
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Paginate page",
+                        "required": false
+                    },
+                    {
+                        "name": "sort_by",
+                        "in": "query",
+                        "description": "Sort By (nearest)",
+                        "required": false
+                    },
+                    {
+                        "name": "lat",
+                        "in": "query",
+                        "description": "Latitude",
+                        "required": false
+                    },
+                    {
+                        "name": "long",
+                        "in": "query",
+                        "description": "Longitude",
+                        "required": false
+                    },
+                    {
+                        "name": "radius",
+                        "in": "query",
+                        "description": "Radius",
+                        "required": false
+                    },
+                    {
+                        "name": "category",
+                        "in": "query",
+                        "description": "Toilet category",
+                        "required": false
+                    },
+                    {
+                        "name": "grade",
+                        "in": "query",
+                        "description": "Toilet Grade",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Toilets retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Toilet"
+                ],
+                "summary": "Toilet Create",
+                "description": "Toilet Create here",
+                "operationId": "toiletCreate",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "location_id",
+                                    "name",
+                                    "address"
+                                ],
+                                "properties": {
+                                    "location_id": {
+                                        "type": "number"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "latitude": {
+                                        "type": "number"
+                                    },
+                                    "longitude": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Toilet successfully created",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/toilets/{id}": {
+            "get": {
+                "tags": [
+                    "Toilet"
+                ],
+                "summary": "Toilet Retrieve",
+                "description": "Toilet Retrieve here",
+                "operationId": "toiletRetrieve",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Toilet id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Toilet retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Toilet not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Toilet"
+                ],
+                "summary": "Toilet Update",
+                "description": "Toilet Update here",
+                "operationId": "ToiletUpdate",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Toilet id",
+                        "required": true
+                    },
+                    {
+                        "name": "location_id",
+                        "in": "query",
+                        "description": "Location id",
+                        "required": false
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Toilet name",
+                        "required": false
+                    },
+                    {
+                        "name": "address",
+                        "in": "query",
+                        "description": "Toilet address",
+                        "required": false
+                    },
+                    {
+                        "name": "latitude",
+                        "in": "query",
+                        "description": "Toilet latitude",
+                        "required": false
+                    },
+                    {
+                        "name": "longitude",
+                        "in": "query",
+                        "description": "Toilet longitude",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Toilet updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation Error."
+                    },
+                    "409": {
+                        "description": "Failed to update the Toilet."
+                    },
+                    "404": {
+                        "description": "Toilet not found."
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Toilet"
+                ],
+                "summary": "Toilet Delete",
+                "description": "PrToiletoduct Delete here",
+                "operationId": "toiletDelete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Toilet id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Toilet deleted successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Failed to delete the Toilet."
+                    },
+                    "404": {
+                        "description": "Toilet not found."
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/toilets-favorite": {
+            "get": {
+                "tags": [
+                    "Toilet"
+                ],
+                "summary": "Toilet favorite",
+                "description": "Toilet Favorite",
+                "operationId": "favorite",
+                "parameters": [
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "description": "size",
+                        "required": false
+                    },
+                    {
+                        "name": "lat",
+                        "in": "query",
+                        "description": "Latitude",
+                        "required": false
+                    },
+                    {
+                        "name": "long",
+                        "in": "query",
+                        "description": "Longitude",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Toilet retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Toilet not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/toilets-favorite/{id}": {
+            "post": {
+                "tags": [
+                    "Toilet"
+                ],
+                "summary": "Toilet favorite",
+                "description": "Toilet Favorite",
+                "operationId": "favorite toilet",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Toilet id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Toilet retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Toilet not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Toilet"
+                ],
+                "summary": "Toilet favorite",
+                "description": "Toilet Favorite",
+                "operationId": "unfavorite-toilet",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Toilet id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Toilet retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Toilet not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/toilets/images": {
+            "post": {
+                "tags": [
+                    "Toilet"
+                ],
+                "summary": "Store a new toilet image",
+                "description": "Store Toilet Image here",
+                "operationId": "Store Toilet Image",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "toilet_id",
+                                    "img"
+                                ],
+                                "properties": {
+                                    "toilet_id": {
+                                        "type": "integer"
+                                    },
+                                    "img": {
+                                        "type": "file",
+                                        "format": "binary"
+                                    },
+                                    "sequence": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Image uploaded successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/toilets/update-images/{id}": {
+            "post": {
+                "tags": [
+                    "Toilet"
+                ],
+                "summary": "Update  toilet image",
+                "description": "Update Toilet Image here",
+                "operationId": "Update Toilet Image",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Toilet image id",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "img": {
+                                        "type": "file",
+                                        "format": "binary"
+                                    },
+                                    "sequence": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Image uploaded successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/toilets/images/{id}": {
+            "delete": {
+                "tags": [
+                    "Toilet"
+                ],
+                "summary": "Delte Toilet Image",
+                "description": "Delete Toilet Image",
+                "operationId": "delete toilet image",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Image id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Toilet delete successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Toilet not found"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "sanctum": {
+                "type": "apiKey",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    }
+}
